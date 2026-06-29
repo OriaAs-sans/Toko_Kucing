@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['sku','name','cost_price','sell_price','stock_qty','min_stock'];
+    protected $fillable = ['sku','name','cost_price','sell_price','stock_qty','min_stock','image'];
+
+    public function getImageUrlAttribute()
+    {
+        if (!$this->image) return null;
+        return asset('storage/products/'.$this->image);
+    }
 }

@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'tiktok' => [
+        'client_key' => env('TIKTOK_CLIENT_KEY'),
+        'client_secret' => env('TIKTOK_CLIENT_SECRET'),
+        'access_token' => env('TIKTOK_ACCESS_TOKEN'),
+        'refresh_token' => env('TIKTOK_REFRESH_TOKEN'),
+        'store_id' => env('TIKTOK_STORE_ID'),
+    ],
+
 ];

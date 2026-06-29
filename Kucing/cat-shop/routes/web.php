@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function(){
-    return view('welcome');
+    return redirect()->route('orders.index');
 });
 
 // Product CRUD
@@ -12,6 +12,12 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WebhookController;
 
 Route::resource('products', ProductController::class);
+Route::patch('products/{product}/stock', [ProductController::class, 'adjustStock'])->name('products.adjustStock');
+Route::post('products/{product}/image', [ProductController::class, 'replaceImage'])->name('products.replaceImage');
+// TikTok sync routes
+use App\Http\Controllers\TiktokController;
+Route::post('sync/tiktok/products', [TiktokController::class, 'syncProducts'])->name('tiktok.syncProducts');
+Route::post('sync/tiktok/orders', [TiktokController::class, 'syncOrders'])->name('tiktok.syncOrders');
 Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 
 // Webhook endpoint (POST) e.g. /webhook/shopee
